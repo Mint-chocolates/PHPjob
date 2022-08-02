@@ -1,0 +1,55 @@
+body{
+  width: 1000px;
+}
+
+header {
+  display: flex;  
+  width: 100%;
+  line-height: 60px;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.haeder_logo{
+  height: 120px;
+  width: 200px;
+  background-color: #add8e6;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+.haeder_greet{
+  height: 60px;
+  width: 800px;
+  background-color: #87ceed;
+}
+
+.haeder_time{
+  height: 60px;
+  width: 800px;
+  background-color: #0ff;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 10px auto;
+  border: 1px solid #fff;
+}
+
+table th {
+  background-color: #87ceeb;
+}
+
+table td {
+  background-color: #e0ffff
+  ;
+}
+
+footer{
+  height: 50px;
+  width: 100%;
+  background-color: #00ced1;
+}
