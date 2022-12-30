@@ -23,33 +23,33 @@ class HomeController extends Controller
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
-     */ 
+     */
 
     public function create(Request $request)
     {
-  
+
         // Varidationを行う
         $this->validate($request, Posts::$rules);
-  
+
         $posts = new Posts;
         $form = $request->all();
-  
+
         // データベースに保存する
         $posts->fill($form);
         $posts->save();
-  
+
         return redirect('home');
     }
 
     public function index(Request $request)
     {
-        $user = new User;
+        // PostsテーブルとUsersテーブルを結合する
         // 作成日の降順に並び替える
-        $posts = Posts::orderBy('created_at', 'desc')->get();
-        // ユーザー名を追加する
-        foreach ($posts as $post) {
-            $post->name = $user->where('id', $post->user_id)->get()->pluck('name')->first();
-        }
+        // SQL:select * from posts, users where posts.user_id=users.id;
+        $posts = Posts::join('users', 'posts.user_id', '=', 'users.id')
+        ->orderBy('posts.created_at', 'desc')
+        ->get(['posts.id','posts.user_id','posts.body','posts.created_at','users.name']);
+
         return view('home', ['posts' => $posts]);
     }
 
@@ -61,6 +61,6 @@ class HomeController extends Controller
         $post->delete();
         // 削除したら一覧画面にリダイレクト
         return redirect('home');
-        // return redirect()->route('book.index');
+
     }
 }

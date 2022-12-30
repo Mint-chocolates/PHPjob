@@ -26,7 +26,7 @@
 
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <input type="text" class="form-control" name="body" value="{{ old('body') }}">
+                                <input type="text" class="form-control" name="body" value="{{ old('body') }}" placeholder="ポエム">
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                             </div>
                         </div>
